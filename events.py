@@ -17,16 +17,14 @@ urls = [['theatre', 'https://afisha.relax.by/theatre/minsk/'],
 
 
 def get_amount(url):
-    def get_number_day(figure):
+    def get_date(figure):
         day = datetime.datetime.today() + datetime.timedelta(days=figure)
-        number_of_day = day.strftime("%d")
-        if number_of_day[0] == '0':
-            number_of_day = number_of_day[1]
-        return number_of_day
+        date = day.strftime("%d_%m_%Y")
+        return date
 
-    list_numbers_of_month = []
+    list_date = []
     for item in range(6):
-        list_numbers_of_month.append(get_number_day(item))
+        list_date.append(get_date(item))
 
     '''parsing events'''
 
@@ -35,15 +33,20 @@ def get_amount(url):
     html_events = (soup.find_all('div', class_='schedule__list'))[
                   :6]  # getting html of page
 
-    html_event = {}  # number of day is key, html of day is value
+    html_event = {}  # date is key, html of day is value
 
     for number in range(len(html_events)):
 
         number_event = html_events[number].find('h5', class_='h5 h5--compact h5--bolder u-mt-6x').text.strip().split()[
             0]
+        if len(number_event) == 1:
+            number_event = '0' + number_event
 
-        if number_event in list_numbers_of_month:
+        number_event += datetime.datetime.today().strftime("_%m_%Y")
+
+        if number_event in list_date:
             html_event[number_event] = html_events[number]
+
         else:
             html_event[number_event] = False
 

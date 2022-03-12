@@ -12,31 +12,38 @@ class DataBase:
         )
         self.cursor = self.db.cursor()
 
-    def insert_events(self, number, names, places, time, hrefs, href_text, category):
+    def insert_events(self, date, names, places, time, hrefs, href_text, category):
         self.cursor.execute(
-            f'CREATE TABLE IF NOT EXISTS {number}_{category} (id INT PRIMARY KEY AUTO_INCREMENT, name varchar(255),'
+            f'CREATE TABLE IF NOT EXISTS {date}__{category} (id INT PRIMARY KEY AUTO_INCREMENT, name varchar(255),'
             f' place varchar(255),'
             f' time varchar(127),'
             f' href varchar(255),'
             f' href_text varchar(255))')
 
-        self.cursor.execute(f'DELETE FROM {number}_{category} ')
+        self.cursor.execute(f'DELETE FROM {date}__{category} ')
         self.db.commit()
 
         for i in range(len(names)):
-            cursor_query = f'''INSERT INTO {number}_{category} (name, place, time, href, href_text) VALUES 
+            cursor_query = f'''INSERT INTO {date}__{category} (name, place, time, href, href_text) VALUES 
                 ('{names[i]}',
                  '{places[i]}', 
                  '{time[i]}', 
                  '{hrefs[i]}', 
                  '{href_text[i]}')'''
 
+
             self.cursor.execute(cursor_query)
             self.db.commit()
 
+        day = datetime.datetime.today() - datetime.timedelta(days=1)
+        delete = day.strftime("%d_%m_%Y")
+
+        self.cursor.execute(f'DROP TABLE IF EXISTS {delete}__{category}')
+        self.db.commit()
+
     def read_db(self, number_of_month, category):
         try:
-            select_all_events = f'SELECT * from {number_of_month}_{category}'
+            select_all_events = f'SELECT * from {number_of_month}__{category}'
             self.cursor.execute(select_all_events)
             rows = self.cursor.fetchall()
             list_events = []

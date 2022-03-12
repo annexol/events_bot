@@ -25,20 +25,16 @@ today = datetime.datetime.today().weekday()
 
 
 def get_number_day():
-    list_numbers_of_month = []
+    list_date = []
     for item in range(6):
         day = datetime.datetime.today() + datetime.timedelta(days=item)
-        number_of_day = day.strftime("%d")
-        if number_of_day[0] == '0':
-            list_numbers_of_month.append(number_of_day[1])
-        else:
-            list_numbers_of_month.append(number_of_day)
-    return list_numbers_of_month
+        date_of_day = day.strftime("%d_%m_%Y")
+        list_date.append(date_of_day)
+    return list_date
 
 
 list_numbers_of_month = get_number_day()
-# for item in range(6):
-#     list_numbers_of_month.append(get_number_day(item))
+
 
 
 type_event = None
