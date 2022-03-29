@@ -42,7 +42,14 @@ def get_amount(url):
         if len(number_event) == 1:
             number_event = '0' + number_event
 
-        number_event += datetime.datetime.today().strftime("_%m_%Y")
+        number_event += (datetime.datetime.today()+ datetime.timedelta(days=number)).strftime("_%m_%Y")
+        # print('______________________________________')
+        #
+        # print(number_event)
+        # print('(((((((((((((((((((')
+        # print(list_date)
+        #
+        # print('______________________________________')
 
         if number_event in list_date:
             html_event[number_event] = html_events[number]

@@ -15,10 +15,10 @@ class DataBase:
     def insert_events(self, date, names, places, time, hrefs, href_text, category):
         self.cursor.execute(
             f'CREATE TABLE IF NOT EXISTS {date}__{category} (id INT PRIMARY KEY AUTO_INCREMENT, name varchar(255),'
-            f' place varchar(255),'
+            f' place varchar(1255),'
             f' time varchar(127),'
-            f' href varchar(255),'
-            f' href_text varchar(255))')
+            f' href varchar(1255),'
+            f' href_text varchar(1255))')
 
         self.cursor.execute(f'DELETE FROM {date}__{category} ')
         self.db.commit()

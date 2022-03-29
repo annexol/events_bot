@@ -6,6 +6,7 @@ import time
 
 def new_events():
     while True:
+        time.sleep(60)
         events.get_events(events.urls)
         time.sleep(14440)
 
