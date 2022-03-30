@@ -13,7 +13,7 @@ types_events = {'Концерт ♬': 'concerts',
                 'Выставки 🌉': 'expo',
                 'Другое 🎨': 'other',
                 'Стендап 🎤': 'stand_up',
-                'Бесплатно 😎': 'free'
+                'Образование 📖': 'education'
                 }
 
 day_of_week = {0: 'Понедельник', 1: 'Вторник', 2: 'Среда', 3: 'Четверг', 4: 'Пятница', 5: 'Суббота', 6: 'Воскресенье'}
@@ -96,9 +96,9 @@ def send_welcome(message):
     i_expo = types.KeyboardButton(text='Выставки 🌉')
     i_stand = types.KeyboardButton(text='Стендап 🎤')
     i_other = types.KeyboardButton(text='Другое 🎨')
-    i_no_cash = types.KeyboardButton(text='Бесплатно 😎')
+    i_education = types.KeyboardButton(text='Образование 📖')
     i_find = types.KeyboardButton(text='Найти компанию 👫')
-    keyboard_event.add(i_concert, i_theatre, i_expo, i_stand, i_other, i_no_cash, i_find)
+    keyboard_event.add(i_concert, i_theatre, i_expo, i_stand, i_other, i_education, i_find)
     bot.send_message(message.chat.id, text='Здравствуйте, выберете мероприятие', reply_markup=keyboard_event)
 
 

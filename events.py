@@ -8,7 +8,7 @@ urls = [['theatre', 'https://afisha.relax.by/theatre/minsk/'],
         ['concerts', 'https://afisha.relax.by/conserts/minsk/'],
         ['expo', 'https://afisha.relax.by/expo/minsk/'],
         ['other', 'https://afisha.relax.by/event/minsk/'],
-        ['free', 'https://afisha.relax.by/free/minsk/'],
+        ['education', 'https://afisha.relax.by/education/minsk/'],
         ['stand_up', 'https://afisha.relax.by/stand-up/minsk/']
         ]
 
